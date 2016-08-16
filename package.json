@@ -1,0 +1,98 @@
+{
+    "name": "tortoise-svn-for-vscode",
+    "displayName": "TortoiseSVN for VS Code",
+    "description": "Using TortoiseSVN in VS Code",
+    "version": "0.0.1",
+    "publisher": "cdsama",
+    "engines": {
+        "vscode": "^1.0.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:tortoise.pick",
+        "onCommand:tortoise.commit",
+        "onCommand:tortoise.diff",
+        "onCommand:tortoise.revert",
+        "onCommand:tortoise.update",
+        "onCommand:tortoise.add",
+        "onCommand:tortoise.rename",
+        "onCommand:tortoise.log",
+        "onCommand:tortoise.blame",
+        "onCommand:tortoise.lock",
+        "onCommand:tortoise.unlock"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "tortoise.pick",
+                "title": "TortoiseSVN ..."
+            },
+            {
+                "command": "tortoise.commit",
+                "title": "TortoiseSVN: svn commit"
+            },
+            {
+                "command": "tortoise.diff",
+                "title": "TortoiseSVN: svn diff"
+            },
+            {
+                "command": "tortoise.revert",
+                "title": "TortoiseSVN: svn revert"
+            },
+            {
+                "command": "tortoise.update",
+                "title": "TortoiseSVN: svn update"
+            },
+            {
+                "command": "tortoise.add",
+                "title": "TortoiseSVN: svn add"
+            },
+            {
+                "command": "tortoise.rename",
+                "title": "TortoiseSVN: svn rename"
+            },
+            {
+                "command": "tortoise.log",
+                "title": "TortoiseSVN: svn log"
+            },
+            {
+                "command": "tortoise.blame",
+                "title": "TortoiseSVN: svn blame"
+            },
+            {
+                "command": "tortoise.lock",
+                "title": "TortoiseSVN: svn lock"
+            },
+            {
+                "command": "tortoise.unlock",
+                "title": "TortoiseSVN: svn unlock"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "tortoise.pick",
+                    "group": "svn"
+                }
+            ],
+            "explorer/context": [
+                {
+                    "command": "tortoise.pick",
+                    "group": "svn"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "typescript": "^1.8.5",
+        "vscode": "^0.11.0"
+    }
+}
