@@ -94,5 +94,9 @@
     "devDependencies": {
         "typescript": "^1.8.5",
         "vscode": "^0.11.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cdsama/tortoise-svn-for-vscode.git"
     }
 }
