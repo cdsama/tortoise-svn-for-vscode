@@ -16,15 +16,22 @@ export function activate(context: vscode.ExtensionContext) {
     // The commandId parameter must match the command field in package.json
 
     let actions = ['commit', 'diff', 'revert', 'update', 'add', 'rename', 'log', 'blame', 'lock', 'unlock'];
-    let disposable = vscode.commands.registerCommand('tortoise.pick', (fileUri) => {
+    let disposablePick = vscode.commands.registerCommand('tortoise.pick', (fileUri) => {
         vscode.window.showQuickPick(actions).then((param) => {
             if (param) {
                 new TortoiseCommand(param, getPath(fileUri)).run();
             }
         });
     });
+    let disposablePickRoot = vscode.commands.registerCommand('tortoise.pickroot', () => {
+        vscode.window.showQuickPick(actions).then((param) => {
+            if (param) {
+                new TortoiseCommand(param, vscode.workspace.rootPath).run();
+            }
+        });
+    });
 
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(disposablePick);
 
     actions.forEach((action: string) => {
         let disposableAction = vscode.commands.registerCommand('tortoise.' + action, (fileUri) => {

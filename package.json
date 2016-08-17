@@ -12,6 +12,7 @@
     ],
     "activationEvents": [
         "onCommand:tortoise.pick",
+        "onCommand:tortoise.pickroot",
         "onCommand:tortoise.commit",
         "onCommand:tortoise.diff",
         "onCommand:tortoise.revert",
@@ -29,6 +30,10 @@
             {
                 "command": "tortoise.pick",
                 "title": "TortoiseSVN ..."
+            },
+            {
+                "command": "tortoise.pickroot",
+                "title": "TortoiseSVN ... (Project Directory)"
             },
             {
                 "command": "tortoise.commit",
@@ -81,6 +86,10 @@
             "explorer/context": [
                 {
                     "command": "tortoise.pick",
+                    "group": "svn"
+                },
+                {
+                    "command": "tortoise.pickroot",
                     "group": "svn"
                 }
             ]
