@@ -13,10 +13,20 @@
 <!-- /TOC -->
 ## Features
 
+* svn commit
+* svn diff
+* svn revert
+* svn update
+* svn add
+* svn rename
+* svn log
+* svn blame
+* svn lock
+* svn unlock
 
 ## Requirements
 
-TortoiseSvn must be installed.
+**TortoiseSvn must be installed.**
 
 ## Release Notes
 
