@@ -2,7 +2,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-let child_process = require('child_process');
+import * as child_process from 'child_process';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -18,10 +18,10 @@ export function activate(context: vscode.ExtensionContext) {
     let actions = ['commit', 'diff', 'revert', 'update', 'add', 'rename', 'log', 'blame', 'lock', 'unlock'];
     let disposable = vscode.commands.registerCommand('tortoise.pick', (fileUri) => {
         vscode.window.showQuickPick(actions).then((param) => {
-            // vscode.window.showInformationMessage(params + ':\t' + getPath(fileUri));
-            new TortoiseCommand(param, getPath(fileUri)).run();
-        }
-        );
+            if (param) {
+                new TortoiseCommand(param, getPath(fileUri)).run();
+            }
+        });
     });
 
     context.subscriptions.push(disposable);
@@ -38,6 +38,13 @@ export function activate(context: vscode.ExtensionContext) {
 
 // this method is called when your extension is deactivated
 export function deactivate() {
+}
+let TortoiseSVNProcExe = "\"C:\\Program Files\\TortoiseSVN\\bin\\TortoiseProc.exe\"";
+try {
+    let ans = child_process.execSync("reg query HKEY_LOCAL_MACHINE\\SOFTWARE\\TortoiseSVN /v ProcPath | find /i \"ProcPath\"").toString().split("    ");
+TortoiseSVNProcExe = "\"" + ans[ans.length -1 ].replace("\n","") + "\"";
+} catch (error) {
+    console.log(error);
 }
 
 function getPath(fileUri): string {
@@ -60,7 +67,7 @@ function getPath(fileUri): string {
 class TortoiseCommand {
     command: string;
     constructor(action: string, path: string) {
-        this.command = "echo TortoiseProc.exe /command:" + action + " /path \"" + path + "\"";
+        this.command = TortoiseSVNProcExe +" /command:" + action + " /path \"" + path + "\"";
     }
     run() {
         child_process.exec(this.command, (error, stdout, stderr) => {
