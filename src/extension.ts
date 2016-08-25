@@ -74,7 +74,7 @@ function getPath(fileUri): string {
 class TortoiseCommand {
     command: string;
     constructor(action: string, path: string) {
-        this.command = TortoiseSVNProcExe +" /command:" + action + " /path \"" + path + "\"";
+        this.command = TortoiseSVNProcExe +" /command:" + action + " /path:\"" + path + "\"";
     }
     run() {
         child_process.exec(this.command, (error, stdout, stderr) => {
