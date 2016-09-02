@@ -2,7 +2,7 @@
     "name": "tortoise-svn-for-vscode",
     "displayName": "TortoiseSVN for VS Code",
     "description": "Using TortoiseSVN in VS Code",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "cdsama",
     "engines": {
         "vscode": "^1.0.0"
