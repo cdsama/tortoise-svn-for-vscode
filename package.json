@@ -1,7 +1,7 @@
 {
     "name": "tortoise-svn-for-vscode",
     "displayName": "TortoiseSVN for VS Code",
-    "description": "Using TortoiseSVN in VS Code",
+    "description": "Using SVN in VS Code",
     "version": "0.0.2",
     "publisher": "cdsama",
     "engines": {
@@ -11,85 +11,85 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:tortoise.pick",
-        "onCommand:tortoise.pickroot",
-        "onCommand:tortoise.commit",
-        "onCommand:tortoise.diff",
-        "onCommand:tortoise.revert",
-        "onCommand:tortoise.update",
-        "onCommand:tortoise.add",
-        "onCommand:tortoise.rename",
-        "onCommand:tortoise.log",
-        "onCommand:tortoise.blame",
-        "onCommand:tortoise.lock",
-        "onCommand:tortoise.unlock"
+        "onCommand:svn.pick",
+        "onCommand:svn.pickroot",
+        "onCommand:svn.commit",
+        "onCommand:svn.diff",
+        "onCommand:svn.revert",
+        "onCommand:svn.update",
+        "onCommand:svn.add",
+        "onCommand:svn.rename",
+        "onCommand:svn.log",
+        "onCommand:svn.blame",
+        "onCommand:svn.lock",
+        "onCommand:svn.unlock"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [
             {
-                "command": "tortoise.pick",
-                "title": "TortoiseSVN ..."
+                "command": "svn.pick",
+                "title": "SVN ..."
             },
             {
-                "command": "tortoise.pickroot",
-                "title": "TortoiseSVN ... (Project Directory)"
+                "command": "svn.pickroot",
+                "title": "SVN ... (Project Directory)"
             },
             {
-                "command": "tortoise.commit",
-                "title": "TortoiseSVN: svn commit"
+                "command": "svn.commit",
+                "title": "SVN: commit"
             },
             {
-                "command": "tortoise.diff",
-                "title": "TortoiseSVN: svn diff"
+                "command": "svn.diff",
+                "title": "SVN: diff"
             },
             {
-                "command": "tortoise.revert",
-                "title": "TortoiseSVN: svn revert"
+                "command": "svn.revert",
+                "title": "SVN: revert"
             },
             {
-                "command": "tortoise.update",
-                "title": "TortoiseSVN: svn update"
+                "command": "svn.update",
+                "title": "SVN: update"
             },
             {
-                "command": "tortoise.add",
-                "title": "TortoiseSVN: svn add"
+                "command": "svn.add",
+                "title": "SVN: add"
             },
             {
-                "command": "tortoise.rename",
-                "title": "TortoiseSVN: svn rename"
+                "command": "svn.rename",
+                "title": "SVN: rename"
             },
             {
-                "command": "tortoise.log",
-                "title": "TortoiseSVN: svn log"
+                "command": "svn.log",
+                "title": "SVN: log"
             },
             {
-                "command": "tortoise.blame",
-                "title": "TortoiseSVN: svn blame"
+                "command": "svn.blame",
+                "title": "SVN: blame"
             },
             {
-                "command": "tortoise.lock",
-                "title": "TortoiseSVN: svn lock"
+                "command": "svn.lock",
+                "title": "SVN: lock"
             },
             {
-                "command": "tortoise.unlock",
-                "title": "TortoiseSVN: svn unlock"
+                "command": "svn.unlock",
+                "title": "SVN: unlock"
             }
         ],
         "menus": {
             "editor/context": [
                 {
-                    "command": "tortoise.pick",
+                    "command": "svn.pick",
                     "group": "svn"
                 }
             ],
             "explorer/context": [
                 {
-                    "command": "tortoise.pick",
+                    "command": "svn.pick",
                     "group": "svn"
                 },
                 {
-                    "command": "tortoise.pickroot",
+                    "command": "svn.pickroot",
                     "group": "svn"
                 }
             ]

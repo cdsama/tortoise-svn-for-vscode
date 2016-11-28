@@ -16,17 +16,17 @@ export function activate(context: vscode.ExtensionContext) {
     // The commandId parameter must match the command field in package.json
 
     let actions = ['commit', 'diff', 'revert', 'update', 'add', 'rename', 'log', 'blame', 'lock', 'unlock'];
-    let disposablePick = vscode.commands.registerCommand('tortoise.pick', (fileUri) => {
+    let disposablePick = vscode.commands.registerCommand('svn.pick', (fileUri) => {
         vscode.window.showQuickPick(actions).then((param) => {
             if (param) {
-                new TortoiseCommand(param, getPath(fileUri)).run();
+                new SVNCommand(param, getPath(fileUri)).run();
             }
         });
     });
-    let disposablePickRoot = vscode.commands.registerCommand('tortoise.pickroot', () => {
+    let disposablePickRoot = vscode.commands.registerCommand('svn.pickroot', () => {
         vscode.window.showQuickPick(actions).then((param) => {
             if (param) {
-                new TortoiseCommand(param, vscode.workspace.rootPath).run();
+                new SVNCommand(param, vscode.workspace.rootPath).run();
             }
         });
     });
@@ -34,8 +34,8 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposablePick);
 
     actions.forEach((action: string) => {
-        let disposableAction = vscode.commands.registerCommand('tortoise.' + action, (fileUri) => {
-            new TortoiseCommand(action, getPath(fileUri)).run();
+        let disposableAction = vscode.commands.registerCommand('svn.' + action, (fileUri) => {
+            new SVNCommand(action, getPath(fileUri)).run();
         });
 
         context.subscriptions.push(disposableAction);
@@ -46,12 +46,18 @@ export function activate(context: vscode.ExtensionContext) {
 // this method is called when your extension is deactivated
 export function deactivate() {
 }
-let TortoiseSVNProcExe = "\"C:\\Program Files\\TortoiseSVN\\bin\\TortoiseProc.exe\"";
-try {
-    let ans = child_process.execSync("reg query HKEY_LOCAL_MACHINE\\SOFTWARE\\TortoiseSVN /v ProcPath | find /i \"ProcPath\"").toString().split("    ");
-TortoiseSVNProcExe = "\"" + ans[ans.length -1 ].replace("\n","") + "\"";
-} catch (error) {
-    console.log(error);
+let svnExecutable;
+if (process.platform == 'win32') {
+    svnExecutable = "\"C:\\Program Files\\TortoiseSVN\\bin\\TortoiseProc.exe\"";
+    try {
+        let ans = child_process.execSync("reg query HKEY_LOCAL_MACHINE\\SOFTWARE\\TortoiseSVN /v ProcPath | find /i \"ProcPath\"").toString().split("    ");
+        svnExecutable = "\"" + ans[ans.length - 1].replace("\n", "") + "\"";
+    } catch (error) {
+        console.log(error);
+    }
+}
+else {
+    svnExecutable = "svn";
 }
 
 function getPath(fileUri): string {
@@ -69,12 +75,17 @@ function getPath(fileUri): string {
 }
 
 /**
- * TortoiseCommand
+ * SVNCommand
  */
-class TortoiseCommand {
+class SVNCommand {
     command: string;
     constructor(action: string, path: string) {
-        this.command = TortoiseSVNProcExe +" /command:" + action + " /path:\"" + path + "\"";
+        if (process.platform == 'win32') {
+            this.command = svnExecutable + " /command:" + action + " /path:\"" + path + "\"";
+        }
+        else {
+            this.command = svnExecutable + " " + action + " " + path;
+        }
     }
     run() {
         child_process.exec(this.command, (error, stdout, stderr) => {
