@@ -7,6 +7,7 @@
     - [Release Notes](#release-notes)
         - [0.0.1](#001)
         - [0.0.2](#002)
+        - [0.1.1](#011)
     - [Installation](#installation)
     - [Contacts](#contacts)
     - [Links](#links)
@@ -38,6 +39,10 @@ Initial release.
 ### 0.0.2
 
 Fix the path to the file - add ":"  by **itzik-h** 
+
+### 0.1.1
+
+Generalize for Linux and possibly OSX  by **s-martin** 
 
 
 ## Installation

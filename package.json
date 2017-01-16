@@ -2,7 +2,7 @@
     "name": "tortoise-svn-for-vscode",
     "displayName": "TortoiseSVN for VS Code",
     "description": "Using SVN in VS Code",
-    "version": "0.0.2",
+    "version": "0.1.1",
     "publisher": "cdsama",
     "engines": {
         "vscode": "^1.0.0"
@@ -106,7 +106,6 @@
         "mocha": "^2.3.3",
         "@types/node": "^6.0.40",
         "@types/mocha": "^2.2.32"
-
     },
     "repository": {
         "type": "git",
